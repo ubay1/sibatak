@@ -7,18 +7,22 @@
 
                     <Carousell/>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="container">
+                    <vue-toastr ref="mytoast"></vue-toastr>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="container bg-formdaftar">
                             <div class="bg-primary p-2 text-center text-white">
                                 Halaman Pendaftaran
                             </div>
-                            <form action="" method="post" v-on:submit.prevent="onSubmit">
+                            <form action="" method="post" v-on:submit.prevent="onSubmit()">
                                 <div class="mb-3 mt-2">
                                     <input type="text" class="form-control" name="nama" id="nama" placeholder="masukan nama" v-model="nama"> <br>
                                     <input type="text" class="form-control" name="phone" id="phone" placeholder="masukan nomor telepon" v-model="phone"> <br>
                                     <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" v-model="email"> <br>
-                                    <input type="text" class="form-control" name="password" id="password" placeholder="masukan password" v-model="password"> <br><input type="text" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="masukan password confirmation" v-model="password_confirmation"> <br>
-                                    <button type="submit" class="btn btn-primary btn-daftar">Daftar<img v-show="showloader" src="assets/img/loader/loading_send.gif" class="img_loader" alt=""></button>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="masukan password" v-model="password"> <br>
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="masukan password confirmation" v-model="password_confirmation"> <br>
+
+                                    <button type="submit" :class="btnsubmit" class="btn btn-primary btn-daftar">Daftar <img v-show="showloader" src="assets/img/loader/loading_send.gif" class="img_loader" alt=""></button>
                                 </div>
                                 <div class="text-center">
                                     <router-link to="/login">sudah punya akun ? masuk disini lae</router-link>
@@ -38,10 +42,13 @@
     import axios from 'axios'
     import Menu from '../components/Menu'
     import Carousell from './Slide'
-    import { Carousel, Slide } from 'vue-carousel';
+    import swal from 'sweetalert2'
+    import VueToastr from "vue-toastr"
+    import { Carousel, Slide } from 'vue-carousel'
 
     export default {
         components:{
+            'vue-toastr':VueToastr,
             Menu, Carousell
         },
         data() {
@@ -53,13 +60,19 @@
                 password_confirmation: '',
                 success: false,
                 showloader: false,
+                btnsubmit: false
             }
         },
         computed: {
 
         },
         mounted() {
-            console.log(process.env.API_URL);
+            console.log(process.env.MIX_API_URL);
+            // swal.fire({
+            //     icon: 'success',
+            //     title: 'sukses',
+            //     text: 'sukses!'
+            // });
         },
         methods: {
             onSubmit() {
@@ -75,11 +88,20 @@
                 formData.append('password', this.password);
                 formData.append('password_confirmation', this.password_confirmation);
 
-                axios.post(process.env.API_URL+'user/register', formData)
+                axios.post(process.env.MIX_API_URL+'user/register', formData)
                 .then(response => {
+                    // console.log(response);
                     this.showloader = !this.showloader;
-                    this.success = response.data;
+                    // this.success = response.data;
                     console.log(response.data);
+                    this.$refs.mytoast.Add({
+                        msg: 'Perhatian',
+                        title: response.data.message,
+                        clickClose: true,
+                        timeout: 3500,
+                        position: 'toast-top-center',
+                        type: response.data.type
+                    })
                 })
                 .catch(function (error){
                     currentObj.output = error;
@@ -90,6 +112,11 @@
 </script>
 
 <style>
+    @media (min-width: 768px) {
+        .bg-formdaftar {
+            max-width: 520px !important;
+        }
+    }
     .img_loader {
         width: 20px;
     }

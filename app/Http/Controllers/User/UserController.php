@@ -23,9 +23,9 @@ class UserController extends Controller
         ];
         $validator = Validator::make($request->all(), [
             'nama' => 'required|min:2',
-            'email' => 'required|unique:users|email',
             'phone' => 'required',
-            'password' => 'required|min:8',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|min:4',
             'password_confirmation' => 'required|same:password',
         ], $pesan);
 
@@ -37,39 +37,39 @@ class UserController extends Controller
                     'statuscode'    => 4001,
                     'message'       => $validator->errors()->first('nama'),
                     'error'         => $validator->errors()->first('nama'),
-                    'data'          => null
-                ]);
-            } elseif ($validator->errors()->first('email')) {
-                return response()->json([
-                    'success'       => false,
-                    'statuscode'    => 4001,
-                    'message'       => $validator->errors()->first('email'),
-                    'error'         => $validator->errors()->first('email'),
-                    'data'          => null
+                    'type'          => 'error'
                 ]);
             } elseif ($validator->errors()->first('phone')) {
                 return response()->json([
                         'success'       => false,
-                        'statuscode'    => 4001,
+                        'statuscode'    => 4003,
                         'message'       => $validator->errors()->first('phone'),
                         'error'         => $validator->errors()->first('phone'),
-                        'data'          => null
+                        'type'          => 'error'
+                ]);
+            } elseif ($validator->errors()->first('email')) {
+                return response()->json([
+                    'success'       => false,
+                    'statuscode'    => 4002,
+                    'message'       => $validator->errors()->first('email'),
+                    'error'         => $validator->errors()->first('email'),
+                    'type'          => 'error'
                 ]);
             } elseif ($validator->errors()->first('password')) {
                 return response()->json([
                         'success'       => false,
-                        'statuscode'    => 4001,
+                        'statuscode'    => 4004,
                         'message'       => $validator->errors()->first('password'),
                         'error'         => $validator->errors()->first('password'),
-                        'data'          => null
+                        'type'          => 'error'
                 ]);
             } elseif ($validator->errors()->first('password_confirmation')) {
                 return response()->json([
                         'success'       => false,
-                        'statuscode'    => 4001,
+                        'statuscode'    => 4005,
                         'message'       => $validator->errors()->first('password_confirmation'),
                         'error'         => $validator->errors()->first('password_confirmation'),
-                        'data'          => null
+                        'type'          => 'error'
                 ]);
             }
         }
@@ -85,7 +85,8 @@ class UserController extends Controller
             return response()->json([
                 'message'=>'email telah digunakan',
                 'success'=>false,
-                'statuscode'=>400
+                'statuscode'=>400,
+                'type'=>'error'
             ]);
         }
 
@@ -102,7 +103,8 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Selamat pendaftaran sukses, silahkan login untuk masuk ke aplikasi',
             'success' => true,
-            'statuscode' => 200
+            'statuscode' => 200,
+            'type'=>'success'
         ]);
     }
 
