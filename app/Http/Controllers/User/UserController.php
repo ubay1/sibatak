@@ -122,14 +122,14 @@ class UserController extends Controller
             return response()->json([
                 'message'	  => 'User tidak terdaftar',
                 'success'	  => false,
-                'statuscode' => 400,
+                'statuscode' => 4001,
             ]);
         } else{
             if (!Auth::attempt($credentials)) {
                 return response()->json([
                     'message'       => 'Email atau password salah',
                     'success'       => false,
-                    'statuscode'   => 400
+                    'statuscode'   => 4002
                 ]);
             }
 
@@ -140,7 +140,8 @@ class UserController extends Controller
             if (!$client) {
               return response()->json([
                 'message' => 'Laravel Passport is not setup properly.',
-                'status' => 500
+                'success' => false,
+                'statuscode' => 500
               ], 500);
             }
 

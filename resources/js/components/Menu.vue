@@ -5,16 +5,32 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-						<router-link class="nav-link" to="/about">About</router-link>
-					</li>
-                    <li class="nav-item">
-						<router-link class="nav-link" to="/galeri">Galeri</router-link>
-					</li>
-                </ul>
-            </div>
+
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <div v-if="accessToken">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/about">About</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/galeri">Galeri</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/logout">Logout</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else-if="!accessToken">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/login">Login</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/daftar">Daftar</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
         </nav>
 </template>
 
@@ -22,12 +38,16 @@
 </style>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
         data() {
             return {
 
             }
         },
+        computed: mapState([
+            'accessToken'
+        ]),
         methods: {
         }
     }

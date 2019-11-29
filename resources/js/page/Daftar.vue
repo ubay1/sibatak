@@ -16,13 +16,13 @@
                             </div>
                             <form action="" method="post" v-on:submit.prevent="onSubmit()">
                                 <div class="mb-3 mt-2">
-                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="masukan nama" v-model="nama"> <br>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="masukan nomor telepon" v-model="phone"> <br>
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" v-model="email"> <br>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="masukan password" v-model="password"> <br>
-                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="masukan password confirmation" v-model="password_confirmation"> <br>
+                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="masukan nama" v-model="form.nama"> <br>
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="masukan nomor telepon" v-model="form.phone"> <br>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" v-model="form.email"> <br>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="masukan password" v-model="form.password"> <br>
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="masukan password confirmation" v-model="form.password_confirmation"> <br>
 
-                                    <button type="submit" :class="btnsubmit" class="btn btn-primary btn-daftar">Daftar <img v-show="showloader" src="assets/img/loader/loading_send.gif" class="img_loader" alt=""></button>
+                                    <button type="submit" :disabled="btnsubmit" class="btn btn-primary btn-daftar">Daftar <img v-show="showloader" src="assets/img/loader/loading_send.gif" class="img_loader" alt=""></button>
                                 </div>
                                 <div class="text-center">
                                     <router-link to="/login">sudah punya akun ? masuk disini lae</router-link>
@@ -53,12 +53,13 @@
         },
         data() {
             return {
-                nama: '',
-                email: '',
-                phone: '',
-                password: '',
-                password_confirmation: '',
-                success: false,
+                form: {
+                    nama: '',
+                    email: '',
+                    phone: '',
+                    password: '',
+                    password_confirmation: '',
+                },
                 showloader: false,
                 btnsubmit: false
             }
@@ -68,16 +69,12 @@
         },
         mounted() {
             console.log(process.env.MIX_API_URL);
-            // swal.fire({
-            //     icon: 'success',
-            //     title: 'sukses',
-            //     text: 'sukses!'
-            // });
         },
         methods: {
             onSubmit() {
                 this.text_send_service = !this.text_send_service;
                 this.showloader        = !this.showloader;
+                this.btnsubmit         = true;
 
                 let currentObj = this;
 
@@ -92,7 +89,6 @@
                 .then(response => {
                     // console.log(response);
                     this.showloader = !this.showloader;
-                    // this.success = response.data;
                     console.log(response.data);
                     this.$refs.mytoast.Add({
                         msg: 'Perhatian',
@@ -101,7 +97,10 @@
                         timeout: 3500,
                         position: 'toast-top-center',
                         type: response.data.type
-                    })
+                    });
+
+                    this.form = '';
+                    this.btnsubmit = false;
                 })
                 .catch(function (error){
                     currentObj.output = error;
