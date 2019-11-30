@@ -79,6 +79,11 @@ router.beforeEach((to, from, next) => {
         next('/');
       }
     }
+    if (to.fullPath === '/daftar') {
+        if (store.state.accessToken) {
+          next('/');
+        }
+      }
     next();
 })
 

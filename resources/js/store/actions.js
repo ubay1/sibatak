@@ -15,6 +15,7 @@ export default {
 						axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
                         commit('auth_success', userData)
                         commit('updateAccessToken', response.data.token);
+                        this.$router.push('/');
 						resolve()
 						break;
 					case false:
@@ -26,6 +27,11 @@ export default {
 						break;
 				}
         });
+    },
+    logout({ commit }) {
+        localStorage.removeItem('data')
+        // axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+        commit('logout')
     },
     fetchAccessToken({ commit }) {
         commit('updateAccessToken', localStorage.getItem('data'));

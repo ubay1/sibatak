@@ -170,7 +170,7 @@ class UserController extends Controller
               'user' 		    =>
               [
                     'id' => $hashids->encode($user->id),
-                    'name' => $user->name,
+                    'nama' => $user->nama,
                     'email' => $user->email,
                     'token' =>
                     [
@@ -185,7 +185,7 @@ class UserController extends Controller
 
     }
 
-    public function logout(Request $request){
+    public function logout(){
         // $header = Auth::user()->token();
         // return $header;
 
@@ -213,8 +213,8 @@ class UserController extends Controller
         return response()->json([
             'message'			=> 'Logout gagal',
             'success' 		=> false,
-            'status_code'	=> 400,
-            ]);
+            'status_code'	=> 4001,
+        ]);
     }
 
     public function refreshtoken(Request $request){
@@ -226,9 +226,9 @@ class UserController extends Controller
 
         if (!$credentials) {
             return response()->json([
-                'message'			=> 'refresh token harus diisi',
-                'success'			=> false,
-                'status_code' => 400,
+                'message'	  => 'refresh token harus diisi',
+                'success'	  => false,
+                'status_code' => 4002,
                 'error'				=> '',
             ]);
         }
@@ -272,6 +272,15 @@ class UserController extends Controller
                 'expires_in'	 => $data->expires_in,
                 'refresh_token' => $data->refresh_token,
             ]
+        ]);
+    }
+
+    public function getuser(){
+        $iduser = Auth::user()->id;
+
+        $datauser = User::find($iduser);
+        return response()->json([
+            'data'=>$datauser
         ]);
     }
 }

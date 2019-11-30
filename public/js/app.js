@@ -1861,7 +1861,35 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1902,12 +1930,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      token: "",
+      email: "",
+      user: {
+        nama: "",
+        email: "",
+        token: ""
+      }
+    };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['accessToken']),
-  methods: {}
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['accessToken']),
+  mounted: function mounted() {
+    if (localStorage.data) {
+      var data = JSON.parse(localStorage.data);
+      this.user.nama = data.user.nama;
+      this.user.email = data.user.email;
+      console.log(data);
+    }
+  },
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      this.email = JSON.parse(localStorage.data).user.email;
+      this.token = JSON.parse(localStorage.data).user.token.access_token;
+      var headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer " + this.token
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/api/" + "user/logout", [], {
+        headers: headers
+      }).then(function (response) {
+        console.log("Response", response);
+
+        switch (response.data.success) {
+          case true:
+            _this.$store.dispatch("logout").then(function () {
+              _this.$router.push('/login'); // window.location.assign(process.env.MIX_APP_URL+"login");
+
+            });
+
+            break;
+
+          case false:
+            console.log("respone falsee", response.data);
+
+            _this.$store.dispatch("logout").then(function () {
+              _this.$router.push('/login'); // window.location.assign(process.env.MIX_APP_URL+"login");
+
+            });
+
+            break;
+
+          default:
+            // console.log("Default");
+            // this.$store.dispatch("logout").then(() => {
+            //     window.location.assign(process.env.MIX_APP_URL+"login");
+            // });
+            break;
+        }
+      });
+    },
+    getuser: function getuser() {
+      this.email = JSON.parse(localStorage.data).user.email;
+      this.token = JSON.parse(localStorage.data).user.token.access_token; // console.log("token = ", this.token);
+
+      var headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer " + this.token
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/" + "user/getuser", {
+        headers: headers
+      }).then(function (response) {
+        console.log("Response", response.data);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2249,11 +2351,11 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.$store.dispatch('login', response.data).then(function () {
               console.log('response true');
-
-              _this.$router.push('/');
             })["catch"](function (err) {
               console.log(err);
             });
+
+            _this.$router.push('/');
 
             break;
 
@@ -2300,7 +2402,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.ml-auto .dropdown-menu {\n\t\tleft: auto !important;\n\t\tright: 0px;\n}\n.navbar-dark .navbar-nav .nav-link{\n\t\tcolor:#fff;\n}\n.navbar-dark .navbar-toggler {\n        /* color: rgba(255, 255, 255, 0.5); */\n        border-color: rgba(255, 255, 255, 0);\n}\nbutton:focus {\n        outline: none;\n}\n\n", ""]);
+exports.push([module.i, "\n.ml-auto .dropdown-menu {\n\t\tleft: auto !important;\n\t\tright: 0px;\n}\n@media (min-width: 992px) {\n.navbar-expand-lg .navbar-collapse {\n            display: -webkit-box !important;\n            display: flex !important;\n            -webkit-box-orient: horizontal;\n            -webkit-box-direction: reverse;\n                    flex-direction: row-reverse;\n            flex-basis: auto;\n}\n}\n.navbar-dark .navbar-nav .nav-link{\n\t\tcolor:#fff;\n}\n.navbar-dark .navbar-toggler {\n        /* color: rgba(255, 255, 255, 0.5); */\n        border-color: rgba(255, 255, 255, 0);\n}\nbutton:focus {\n        outline: none;\n}\n\n", ""]);
 
 // exports
 
@@ -23876,102 +23978,202 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "nav",
-    {
-      staticClass: "navbar navbar-expand-lg  navbar-dark fixed-top bg-primary"
-    },
+    "div",
     [
-      _c("router-link", { staticClass: "navbar-brand", attrs: { to: "/" } }, [
-        _vm._v("Batako")
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "collapse navbar-collapse", attrs: { id: "mynavbar" } },
-        [
-          _vm.accessToken
-            ? _c("div", [
-                _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
+      _vm.accessToken
+        ? [
+            _c(
+              "nav",
+              {
+                staticClass:
+                  "navbar navbar-expand-lg  navbar-dark fixed-top bg-primary"
+              },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "navbar-brand", attrs: { to: "/" } },
+                  [_vm._v("Batako")]
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse navbar-collapse",
+                    attrs: { id: "mynavbar" }
+                  },
+                  [
+                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c("b", { staticClass: "nav-link" }, [
+                          _vm._v(
+                            _vm._s(_vm.user.nama) +
+                              ", " +
+                              _vm._s(_vm.user.email)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/about" } },
-                        [_vm._v("About")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: "/about" }
+                            },
+                            [_vm._v("About")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/galeri" } },
-                        [_vm._v("Galeri")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: "/galeri" }
+                            },
+                            [_vm._v("Galeri")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.logout()
+                              }
+                            }
+                          },
+                          [_vm._v("Logout")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.getuser()
+                              }
+                            }
+                          },
+                          [_vm._v("getuser")]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ]
+        : !_vm.accessToken
+        ? [
+            _c(
+              "nav",
+              {
+                staticClass:
+                  "navbar navbar-expand-lg  navbar-dark fixed-top bg-primary"
+              },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "navbar-brand", attrs: { to: "/login" } },
+                  [_vm._v("Batako")]
+                ),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse navbar-collapse",
+                    attrs: { id: "mynavbar" }
+                  },
+                  [
+                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
                       _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/logout" } },
-                        [_vm._v("Logout")]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ])
-            : !_vm.accessToken
-            ? _c("div", [
-                _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: "/login" }
+                            },
+                            [_vm._v("Login")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/login" } },
-                        [_vm._v("Login")]
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: "/daftar" }
+                            },
+                            [_vm._v("Daftar")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/daftar" } },
-                        [_vm._v("Daftar")]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ])
-            : _vm._e()
-        ]
-      )
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ]
+        : _vm._e()
     ],
-    1
+    2
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#mynavbar",
+          "aria-controls": "mynavbar",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -42331,7 +42533,7 @@ function guest(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/index.js */ "./resources/js/store/index.js");
@@ -42356,7 +42558,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  base: process.env.MIX_VUE_ROUTER_PATH,
+  base: "/",
   routes: [{
     path: "/login",
     name: 'login',
@@ -42415,10 +42617,15 @@ router.beforeEach(function (to, from, next) {
     }
   }
 
+  if (to.fullPath === '/daftar') {
+    if (_store_index_js__WEBPACK_IMPORTED_MODULE_2__["default"].state.accessToken) {
+      next('/');
+    }
+  }
+
   next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -42451,6 +42658,7 @@ __webpack_require__.r(__webpack_exports__);
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + token;
           commit('auth_success', userData);
           commit('updateAccessToken', response.data.token);
+          this.$router.push('/');
           resolve();
           break;
 
@@ -42465,8 +42673,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     });
   },
-  fetchAccessToken: function fetchAccessToken(_ref2) {
+  logout: function logout(_ref2) {
     var commit = _ref2.commit;
+    localStorage.removeItem('data'); // axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+    commit('logout');
+  },
+  fetchAccessToken: function fetchAccessToken(_ref3) {
+    var commit = _ref3.commit;
     commit('updateAccessToken', localStorage.getItem('data'));
   }
 });

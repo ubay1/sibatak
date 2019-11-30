@@ -97,11 +97,11 @@
                             this.btnsubmit  = false;
                             this.$store.dispatch('login', response.data).then(() => {
                                 console.log('response true')
-                                this.$router.push('/');
 							}).catch((err) => {
 								console.log(err)
 							})
 
+                            this.$router.push('/');
                             break;
 
                         default:

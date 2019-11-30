@@ -9,6 +9,7 @@ Route::prefix('user')->group(function(){
 
     Route::middleware(['auth:api'])->group(function(){
         Route::post('logout', 'User\UserController@logout');
+        Route::get('getuser', 'User\UserController@getuser');
     });
 });
 
