@@ -11,9 +11,9 @@
                     <div class="collapse navbar-collapse" id="mynavbar">
 
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <b  class="nav-link">{{user.nama}}, {{user.email}}</b>
-                                </li>
+                                <!-- <li class="nav-item">
+                                    <b  class="nav-link">{{user.nama}}</b>
+                                </li> -->
                                 <li class="nav-item">
                                     <router-link class="nav-link" to="/about">About</router-link>
                                 </li>
@@ -21,8 +21,11 @@
                                     <router-link class="nav-link" to="/galeri">Galeri</router-link>
                                 </li>
                                 <li class="nav-item">
+                                    <router-link class="nav-link" to="/chat">Chat</router-link>
+                                </li>
+                                <li class="nav-item">
                                     <button type="button" class="btn btn-danger" @click.prevent="logout()">Logout</button>
-                                    <button type="button" class="btn btn-info" @click.prevent="getuser()">getuser</button>
+                                    <!-- <button type="button" class="btn btn-info" @click.prevent="getuser()">getuser</button> -->
                                 </li>
                             </ul>
                         <!-- <div v-else-if="!accessToken">
@@ -86,7 +89,7 @@
                 let data = JSON.parse(localStorage.data);
                 this.user.nama = data.user.nama;
                 this.user.email = data.user.email;
-                console.log(data)
+                // console.log(data)
             }
         },
         methods: {
@@ -102,7 +105,7 @@
                     headers: headers
                 })
                 .then(response => {
-                    console.log("Response", response);
+                    // console.log("Response", response);
                     switch (response.data.success) {
                         case true:
                             this.$store.dispatch("logout").then(() => {

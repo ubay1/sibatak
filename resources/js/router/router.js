@@ -7,6 +7,9 @@ import Daftar from '../page/Daftar'
 import Home from '../page/Home'
 import About from '../page/About'
 import Galeri from '../page/Galeri'
+import Blog from '../page/Blog'
+import Chat from '../page/Chat'
+
 
 import guest from './middleware/guest'
 // import auth from './middleware/auth'
@@ -57,6 +60,22 @@ const router = new VueRouter({
             meta: {
                 requiresAuth: true
             }
+        },
+        {
+            path : "/blog",
+            name : 'blog',
+            component : Blog,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path : "/chat",
+            name : 'chat',
+            component : Chat,
+            meta: {
+                requiresAuth: true
+            }
         }
 
     ]
@@ -73,7 +92,12 @@ router.beforeEach((to, from, next) => {
         if (!store.state.accessToken) {
           next('/login');
         }
-      }
+    }
+    if (to.fullPath === '/chat') {
+        if (!store.state.accessToken) {
+          next('/login');
+        }
+    }
     if (to.fullPath === '/login') {
       if (store.state.accessToken) {
         next('/');

@@ -79,11 +79,11 @@
                 let currentObj = this;
 
                 let formData = new FormData();
-                formData.append('nama', this.nama);
-                formData.append('email', this.email);
-                formData.append('phone', this.phone);
-                formData.append('password', this.password);
-                formData.append('password_confirmation', this.password_confirmation);
+                formData.append('nama', this.form.nama);
+                formData.append('email', this.form.email);
+                formData.append('phone', this.form.phone);
+                formData.append('password', this.form.password);
+                formData.append('password_confirmation', this.form.password_confirmation);
 
                 axios.post(process.env.MIX_API_URL+'user/register', formData)
                 .then(response => {
