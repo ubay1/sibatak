@@ -54192,6 +54192,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -54568,6 +54613,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -54778,7 +54832,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.homepage-header-background{\n    margin-top: 100px;\n}\n", ""]);
+exports.push([module.i, "\n.bg-about{\n    margin-top: 40px;\n    margin-bottom: 40px;\n}\n.txt-about{\n    background: #393636;\n    padding: 10px;\n    color: #fff;\n    font-size: 15px;\n    font-weight: bold;\n}\n.nav-pills .nav-link.active, .nav-pills .show > .nav-link {\n    color: #3490DB;\n    font-weight: bold;\n    background-color: transparent;\n    border: 2px solid #3490dc;\n    border-radius: 50px;\n}\n.homepage-header-background{\n    margin-top: 100px;\n}\n", ""]);
 
 // exports
 
@@ -54873,7 +54927,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n@media(min-width:768px){\n.bg-img-home{\n        display: -webkit-box;\n        display: flex;\n        -webkit-box-pack: space-evenly;\n                justify-content: space-evenly;\n        margin-bottom: 40px;\n}\n.hr-home{\n        border:1px solid #2a2a2a;\n        width: 70%;\n        margin-bottom: 40px;\n}\n}\n.img-home{\n    width: 150px;\n}\n.bg-welcome{\n    margin-bottom: 100px;\n}\n.welcome{\n    background: #FFEB3B;\n    color: #393636;\n    font-weight: bold;\n    padding: 20px;\n    font-size: 30px;\n    box-shadow: 0px 4px 0px #c5c4c4;\n    text-transform: uppercase;\n}\n.txt-home{\n    font-size: 20px;\n    color: #393636;\n    text-transform: uppercase;\n    font-weight: bold;\n}\n.homepage-header-background{\n    margin-top: 100px;\n}\n", ""]);
+exports.push([module.i, "\n@media(min-width:768px){\n.bg-img-home{\n        display: -webkit-box;\n        display: flex;\n        -webkit-box-pack: space-evenly;\n                justify-content: space-evenly;\n        margin-bottom: 40px;\n}\n.bg-welcome{\n        margin-bottom: 100px;\n        text-align: left;\n        margin-left: 60px;\n        margin-right: 60px;\n}\n.welcome{\n        color: #393636;\n        font-weight: bold;\n        font-size: 20px;\n}\n.txt-home{\n        font-size: 20px;\n        color: #393636;\n        text-transform: uppercase;\n        font-weight: bold;\n}\n}\n@media (min-width:320px) and (max-width:767px){\n.bg-img-home{\n        display: -webkit-box;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n                flex-direction: column;\n        margin-bottom: 40px;\n}\n.bg-img-home span{\n        margin-bottom: 20px;\n}\n.bg-welcome{\n        margin-bottom: 100px;\n        text-align: left;\n        margin-left: 60px;\n        margin-right: 60px;\n}\n.welcome{\n        color: #393636;\n        font-weight: bold;\n        font-size: 20px;\n}\n.txt-home{\n        font-size: 20px;\n        color: #393636;\n        text-transform: uppercase;\n        font-weight: bold;\n}\n}\n.img-home{\n    width: 150px;\n}\n.hr-home{\n    margin-left: 60px;\n    margin-bottom: 20px;\n    margin-right: 60px;\n}\n.bg-apiblog{\n    margin-bottom: 40px;\n    margin-left: 60px;\n    margin-top: 20px;\n    margin-bottom: 60px;\n    margin-right: 60px;\n}\n.txt-apiblog{\n    background: #393636;\n    padding: 10px;\n    color: #fff;\n    font-size: 15px;\n    font-weight: bold;\n}\n.homepage-header-background{\n    margin-top: 100px;\n}\n", ""]);
 
 // exports
 
@@ -77274,7 +77328,161 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "homepage-header-background" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _vm._v("\n            Ini About Component\n        ")
+        _c("div", { staticClass: "bg-about" }, [
+          _c("span", { staticClass: "txt-about" }, [_vm._v("About")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          {
+            staticClass: "container nav nav-pills",
+            attrs: { role: "tablist" }
+          },
+          [
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link active",
+                  attrs: { "data-toggle": "pill", href: "#bataktoba" }
+                },
+                [_vm._v("Batak Toba")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { "data-toggle": "pill", href: "#batakkaro" }
+                },
+                [_vm._v("Batak Karo")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { "data-toggle": "pill", href: "#bataksimalungun" }
+                },
+                [_vm._v("Batak Simalungun")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { "data-toggle": "pill", href: "#batakpakpakdairi" }
+                },
+                [_vm._v("Batak Pakpak-Dairi")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: {
+                    "data-toggle": "pill",
+                    href: "#batakangkolamandailing"
+                  }
+                },
+                [_vm._v("Batak Angkola-Mandailing")]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "container tab-content" }, [
+          _c(
+            "div",
+            { staticClass: "tab-pane active", attrs: { id: "bataktoba" } },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", [_vm._v("HOME")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tab-pane fade", attrs: { id: "batakkaro" } },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", [_vm._v("Menu 1")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tab-pane fade", attrs: { id: "bataksimalungun" } },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", [_vm._v("Menu 2")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tab-pane fade", attrs: { id: "batakpakpakdairi" } },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", [_vm._v("Menu 2")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: { id: "batakangkolamandailing" }
+            },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", [_vm._v("Menu 2")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam."
+                )
+              ])
+            ]
+          )
+        ])
       ])
     ])
   }
@@ -77824,12 +78032,6 @@ var render = function() {
       _c("div", { staticClass: "homepage-header-background" }, [
         _c("div", { staticClass: "container-fluid" }, [
           _c("div", { staticClass: "text-center" }, [
-            _c("div", { staticClass: "bg-welcome" }, [
-              _c("span", { staticClass: "welcome" }, [
-                _vm._v("Selamat Datang Lae " + _vm._s(_vm.user.nama))
-              ])
-            ]),
-            _vm._v(" "),
             _c("div", { staticClass: "bg-img-home" }, [
               _c(
                 "span",
@@ -77877,12 +78079,29 @@ var render = function() {
                   _c("span", { staticClass: "txt-home" }, [_vm._v("Galeri")])
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "d-flex flex-column" },
+                [
+                  _c("router-link", { attrs: { to: "chat" } }, [
+                    _c("img", {
+                      staticClass: "img-home",
+                      attrs: { src: "images/img-chat.png", alt: "" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "txt-home" }, [_vm._v("Chat")])
+                ],
+                1
               )
             ]),
             _vm._v(" "),
-            _c("hr", { staticClass: "hr-home" }),
-            _vm._v("\n                disini api blog\n\n            ")
-          ])
+            _c("hr", { staticClass: "hr-home" })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -77891,7 +78110,20 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-apiblog" }, [
+      _c("span", { staticClass: "txt-apiblog" }, [_vm._v("Blog")]),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v("\n                disini api blog\n            ")
+    ])
+  }
+]
 render._withStripped = true
 
 
